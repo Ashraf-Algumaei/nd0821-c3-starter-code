@@ -1,3 +1,4 @@
 # Data using DVC instead
 src/data/census.csv
 src/data/census_clean.csv
+.DS_Store
