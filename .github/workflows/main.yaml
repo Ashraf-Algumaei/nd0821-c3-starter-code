@@ -32,7 +32,7 @@ jobs:
         aws-region: us-east-2
     - uses: iterative/setup-dvc@v1
     - name: Run DVC pull 
-    - run: |
+      run: |
         dvc pull
     - name: Install dependencies
       run: |
