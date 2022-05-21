@@ -43,6 +43,7 @@ def compute_model_metrics(y, preds):
     fbeta = fbeta_score(y, preds, beta=1, zero_division=1)
     precision = precision_score(y, preds, zero_division=1)
     recall = recall_score(y, preds, zero_division=1)
+
     return precision, recall, fbeta
 
 
@@ -51,7 +52,7 @@ def inference(model, X):
 
     Inputs
     ------
-    model : ???
+    model : Random Forest Classifier model
         Trained machine learning model.
     X : np.array
         Data used for prediction.
@@ -60,4 +61,6 @@ def inference(model, X):
     preds : np.array
         Predictions from the model.
     """
-    pass
+    preds = model.predict(X)
+
+    return preds
