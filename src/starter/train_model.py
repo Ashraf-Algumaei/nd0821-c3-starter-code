@@ -33,10 +33,17 @@ X_test, y_test, encoder, lb = process_data(
     test, categorical_features=cat_features, label="salary", training=False, encoder=encoder, lb=lb
 )
 
-# Train and save a model.
+# Train and save model files.
 rfc_model = train_model(X_train=X_train, y_train=y_train)
 with open('../model/rfc_model.pkl', 'wb') as pickle_file:
     pickle.dump(rfc_model, pickle_file)
+
+with open('../model/encoder.pkl', 'wb') as pickle_file:
+    pickle.dump(encoder, pickle_file)
+
+with open('../model/lb.pkl', 'wb') as pickle_file:
+    pickle.dump(lb, pickle_file)
+
 
 # Get Predictions and model metrics 
 preds = inference(model=rfc_model, X=X_test)
