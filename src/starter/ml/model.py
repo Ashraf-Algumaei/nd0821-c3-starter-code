@@ -64,3 +64,6 @@ def inference(model, X):
     preds = model.predict(X)
 
     return preds
+
+def slice_performance_test(model, ):
+    pass
