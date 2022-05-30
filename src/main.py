@@ -43,8 +43,8 @@ async def model_predict(body: UserRequest):
     model_input_df = pd.DataFrame(body)
 
     # Proces the data and call the model 
-
+    
 
     # Return result 
-    
+
     return body

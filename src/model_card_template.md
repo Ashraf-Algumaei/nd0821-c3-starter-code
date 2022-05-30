@@ -22,7 +22,7 @@ Below are the metrics pulled from the final model:
 
 
 ## Ethical Considerations
-Looking at the training data, some information should not be used to determine the salary information (e.g. race, sex). These factors can be biased and cause discrepency if the model results were utilized to make any decision.   
+Looking at the training data, some information should not be used to determine the salary information (e.g. race, sex). These factors can be biased and cause discrepancy if the model results were utilized to make any decisions.   
 Further more, including multiple countries with different cost of living can effect the model results and biasing towards countries with higher cost of living. 
 
 ## Caveats and Recommendations
