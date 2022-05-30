@@ -1,11 +1,26 @@
 # Put the code for your API here.
+from pyexpat import model
 import pandas as pd
+import pickle
 
 from ast import alias
 from doctest import Example
 from typing import Union 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
+from starter.ml.data import process_data
+from starter.ml.model import inference
+
+
+# Load the pickle files 
+with open('model/rfc_model.pkl', 'rb') as pickle_file:
+    rfc_model = pickle.load(pickle_file)
+
+with open('model/encoder.pkl', 'rb') as pickle_file:
+    encoder = pickle.load(pickle_file)
+
+with open('model/lb.pkl', 'rb') as pickle_file:
+    lb = pickle.load(pickle_file)
 
 
 class UserRequest(BaseModel):
@@ -39,12 +54,24 @@ async def welcome_message():
 
 @app.post("/predict")
 async def model_predict(body: UserRequest):
+    cat_features = [
+    "workclass",
+    "education",
+    "marital-status",
+    "occupation",
+    "relationship",
+    "race",
+    "sex",
+    "native-country",
+    ]
     # Create model input
-    model_input_df = pd.DataFrame(body)
+    model_input_df = pd.DataFrame(body.dict(by_alias=True), index=[0])
 
     # Proces the data and call the model 
-    
+    model_input_df_processed, _, _, _ = process_data(
+    model_input_df, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb
+    )
+    prediction = inference(model=rfc_model, X=model_input_df_processed)
 
-    # Return result 
-
-    return body
+    # Format and return result 
+    return {"Salary": "Less than or equal to $50k" if prediction[0] == 0 else "Higher than $50k"}
