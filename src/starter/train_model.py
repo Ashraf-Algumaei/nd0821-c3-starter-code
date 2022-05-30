@@ -51,5 +51,6 @@ with open('../model/lb.pkl', 'wb') as pickle_file:
 preds = inference(model=rfc_model, X=X_test)
 precision, recall, fbeta = compute_model_metrics(y=y_test, preds=preds)
 
+# Perform model slice test
 
 

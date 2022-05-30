@@ -20,7 +20,7 @@ user_request = {
     "nativeCountry": "United-States"
 }
 
-resp = requests.get('https://udacity-project3-ashraf.herokuapp.com/')
+resp = requests.post('https://udacity-project3-ashraf.herokuapp.com/', json=user_request)
 
 print(resp.status_code)
 print(resp.json())
