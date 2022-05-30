@@ -23,7 +23,7 @@ def train(data):
 @pytest.fixture
 def test(data):
     _, test = train_test_split(data, test_size=0.20)
-    return test    
+    return test
 
 
 @pytest.fixture
@@ -45,7 +45,7 @@ def encoder_lb(train, cat_features):
     _, _, encoder, lb = process_data(
         train, categorical_features=cat_features, label="salary", training=True
     )
-    return (encoder, lb) 
+    return (encoder, lb)
 
 
 @pytest.fixture
@@ -87,7 +87,7 @@ def test_inference(cat_features, test, encoder_lb, mock_train_model):
     inference(mock_train_model, X_test)
 
     # THEN
-    mock_train_model.predict.assert_called_with(X_test) 
+    mock_train_model.predict.assert_called_with(X_test)
 
 
 def test_compute_model_metrics(cat_features, test, encoder_lb, mock_inference_result):
@@ -99,9 +99,8 @@ def test_compute_model_metrics(cat_features, test, encoder_lb, mock_inference_re
 
     # WHEN
     precision, recall, fbeta = compute_model_metrics(y_test, mock_inference_result)
-    
+
     # THEN
     assert precision is not None
     assert recall is not None
     assert fbeta is not None
-

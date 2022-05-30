@@ -23,18 +23,18 @@ class UserRequest(BaseModel):
     age: int = Field(None, example=39)
     workclass: str = Field(None, example="State-gov")
     fnlgt: int = Field(None, example=77516)
-    education: str = Field(None, example="Bachelors") 
+    education: str = Field(None, example="Bachelors")
     educationNum: int = Field(None, alias="education-num", example=13)
     maritalStatus: str = Field(None, alias="marital-status", example="Never-married")
     occupation: str = Field(None, example="Adm-clerical")
     relationship: str = Field(None, example="Not-in-family")
     race: str = Field(None, example="White") 
-    sex: str = Field(None, example="Female") 
+    sex: str = Field(None, example="Female")
     capitalGain: int = Field(None, alias="capital-gain", example=2174)
     capitalLoss: int = Field(None, alias="capital-loss", example=0)
     hoursPerWeek: int = Field(None, alias="hours-per-week", example=40)
     nativeCountry: str = Field(None, alias="native-country", example="United-States")
-    
+
     class Config:
         # utilizes pydantic to replace the name with the alias
         allow_population_by_field_name = True
@@ -63,10 +63,10 @@ async def model_predict(body: UserRequest):
     # Create model input
     model_input_df = pd.DataFrame(body.dict(by_alias=True), index=[0])
 
-    # Proces the data and call the model 
+    # Proces the data and call the model
     model_input_df_processed, _, _, _ = process_data(
     model_input_df, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
     prediction = inference(model=rfc_model, X=model_input_df_processed)
 
-    # Format and return result 
+    # Format and return result
     return {"Salary": "Less than or equal to $50k" if prediction[0] == 0 else "Higher than $50k"}
