@@ -69,8 +69,7 @@ async def model_predict(body: UserRequest):
 
     # Proces the data and call the model 
     model_input_df_processed, _, _, _ = process_data(
-    model_input_df, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb
-    )
+    model_input_df, categorical_features=cat_features, label=None, training=False, encoder=encoder, lb=lb)
     prediction = inference(model=rfc_model, X=model_input_df_processed)
 
     # Format and return result 
