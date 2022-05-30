@@ -1,5 +1,7 @@
 # Data using DVC instead
 src/data/census.csv
 src/data/census_clean.csv
+src/model/encoder.pkl
+src/model/rfc_model.pkl
 .DS_Store
 __pycache__/
