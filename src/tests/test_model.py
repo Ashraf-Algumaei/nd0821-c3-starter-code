@@ -11,7 +11,7 @@ from pytest_mock import MockerFixture
 
 @pytest.fixture
 def data():
-    return pd.read_csv('./src/data/census_clean.csv')
+    return pd.read_csv('./data/census_clean.csv')
 
 
 @pytest.fixture

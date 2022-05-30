@@ -13,13 +13,13 @@ from starter.ml.model import inference
 
 
 # Load the pickle files 
-with open('model/rfc_model.pkl', 'rb') as pickle_file:
+with open('./model/rfc_model.pkl', 'rb') as pickle_file:
     rfc_model = pickle.load(pickle_file)
 
-with open('model/encoder.pkl', 'rb') as pickle_file:
+with open('./model/encoder.pkl', 'rb') as pickle_file:
     encoder = pickle.load(pickle_file)
 
-with open('model/lb.pkl', 'rb') as pickle_file:
+with open('./model/lb.pkl', 'rb') as pickle_file:
     lb = pickle.load(pickle_file)
 
 
