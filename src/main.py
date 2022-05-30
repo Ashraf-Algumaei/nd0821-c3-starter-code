@@ -1,18 +1,14 @@
 # Put the code for your API here.
-from pyexpat import model
 import pandas as pd
 import pickle
 
-from ast import alias
-from doctest import Example
-from typing import Union 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from starter.ml.data import process_data
 from starter.ml.model import inference
 
 
-# Load the pickle files 
+# Load the pickle files
 with open('./model/rfc_model.pkl', 'rb') as pickle_file:
     rfc_model = pickle.load(pickle_file)
 
