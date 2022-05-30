@@ -26,3 +26,4 @@ Looking at the training data, some information should not be used to determine t
 Further more, including multiple countries with different cost of living can effect the model results and biasing towards countries with higher cost of living. 
 
 ## Caveats and Recommendations
+As mentioned in the ethical considerations section, the model does not have the correct features to accurately determine the salary. Thus, adding more features and removing some of the features that should not be used for determining the salary would make this model more accurate and usable to production environments
