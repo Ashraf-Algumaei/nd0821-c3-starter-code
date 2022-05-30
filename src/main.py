@@ -1,12 +1,19 @@
 # Put the code for your API here.
 import pandas as pd
 import pickle
+import os
 
 from fastapi import FastAPI
 from pydantic import BaseModel, Field
 from starter.ml.data import process_data
 from starter.ml.model import inference
 
+
+if "DYNO" in os.environ and os.path.isdir(".dvc"):
+    os.system("dvc config core.no_scm true")
+    if os.system("dvc pull") != 0:
+        exit("dvc pull failed")
+    os.system("rm -r .dvc .apt/usr/lib/dvc")
 
 # Load the pickle files
 with open('./model/rfc_model.pkl', 'rb') as pickle_file:
