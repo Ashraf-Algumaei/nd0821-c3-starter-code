@@ -5,7 +5,7 @@ from sklearn.model_selection import train_test_split
 # Add the necessary imports for the starter code.
 import pandas as pd
 from ml.data import process_data
-from ml.model import train_model, inference, compute_model_metrics
+from ml.model import train_model, inference, compute_model_metrics, slice_performance_test
 import pickle
 
 # Add code to load in the data.
@@ -51,6 +51,7 @@ with open('../model/lb.pkl', 'wb') as pickle_file:
 preds = inference(model=rfc_model, X=X_test)
 precision, recall, fbeta = compute_model_metrics(y=y_test, preds=preds)
 
-# Perform model slice test
-
+# Perform model slice test on Education
+slice_performance_test(df=data, model=rfc_model, encoder=encoder, lb=lb, 
+                            feature="education", cat_features=cat_features)
 
